@@ -20,15 +20,21 @@ exports.existingProfileCheck = async(req,res,next) => {
                 req.body.email
         ]);
 
-        if(centerSearch.length === 0 && userSearch.length === 0){
+        found = null;
+        if(centerSearch.length !== 0){
+            found = centerSearch;
+        }
+        else if(userSearch.length !== 0){
+            found = userSearch;
+        }
+        if(found === null){
             return res.status(201).json({
                 message: "NOT_EXISTING"
             })
         }
         else{
-            return res.status(201).json({
-                message: "EXISTING"
-            })
+            res.contentType('application/json');
+            return res.send(JSON.stringify(found));
         }
     }
     catch(err){
