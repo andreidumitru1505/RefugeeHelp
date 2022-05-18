@@ -12,8 +12,7 @@ exports.registerCenter = async(req,res,next) => {
 
     try{
         const [newCenter] = await conn.execute(
-            "INSERT INTO `centers` (`identityGuid`, `email`, `name`, `registrationNumber`, `address`) VALUES (?,?,?,?,?)",[
-                req.body.identityGuid,
+            "INSERT INTO `centers` (`email`, `name`, `registrationNumber`, `address`) VALUES (?,?,?,?,?)",[
                 req.body.email,
                 req.body.name,
                 req.body.registrationNumber,

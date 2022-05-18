@@ -14,8 +14,7 @@ exports.profileSubmission = async(req,res,next) => {
 
         if(req.body.role == "CENTER_ADMIN"){
             const [newCenter] = await conn.execute(
-                "INSERT INTO `centers` (`identityGuid`, `email`, `name`, `registrationNumber`, `address`) VALUES (?,?,?,?,?)",[
-                    req.body.identityGuid,
+                "INSERT INTO `centers` (`email`, `name`, `registrationNumber`, `address`) VALUES (?,?,?,?,?)",[
                     req.body.email,
                     req.body.name,
                     req.body.registrationNumber,
@@ -35,8 +34,7 @@ exports.profileSubmission = async(req,res,next) => {
         }
         else if(req.body.role == "BASIC_USER"){
             const [newUser] = await conn.execute(
-                "INSERT INTO `users` (`identityGuid`, `email`, `name`) VALUES (?,?,?)",[
-                    req.body.identityGuid,
+                "INSERT INTO `users` (`email`, `name`) VALUES (?,?,?)",[
                     req.body.email,
                     req.body.name
             ]);

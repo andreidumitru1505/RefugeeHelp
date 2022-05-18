@@ -16,7 +16,6 @@ router.post('/postRequest',[
 ], postRequest);
 
 router.post('/registerCenter',[
-    body('identityGuid', 'Invalid'),
     body('email', "Please insert your email").notEmpty(),
     body('name', 'Please insert center name').notEmpty(),
     body('registrationNumber', "Please insert registration number").notEmpty(),
@@ -24,7 +23,6 @@ router.post('/registerCenter',[
 ], registerCenter);
 
 router.post('/profileSubmission',[
-    body('identityGuid', 'Invalid'),
     body('email', "Please insert your email").notEmpty(),
     body('name', 'Please insert center name').notEmpty(),
     body('registrationNumber', "Please insert registration number").notEmpty(),
