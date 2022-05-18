@@ -4,6 +4,8 @@ import LoginButton from './components/LoginButton';
 import LogoutButton from './components/LogoutButton';
 import Home from './components/Home';
 import { useAuth0 } from '@auth0/auth0-react';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import ProfileSubmission from './components/ProfileSubmission';
 
 function App() {
 
@@ -24,6 +26,12 @@ function App() {
         </a>
         <Home/>
       </header>
+        <div className="content">
+            <Routes>
+                <Route exact path="/profileSubmission" element = {<ProfileSubmission/>}/>
+                <Route exact path="/" element={<Home/>}/>
+            </Routes>
+        </div>
     </div>
   );
 }
