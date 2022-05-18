@@ -39,7 +39,7 @@ async function register(profileData) {
             address,
             role
           });
-          navigate('/home');
+          navigate('/home', {state:{email:email, name: name, role: role}});
   }
 
   if(changedRole == null){

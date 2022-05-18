@@ -7,6 +7,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import ProfileSubmission from './components/ProfileSubmission';
 import CheckExistingProfile from './components/CheckExistingProfile';
+import PostRequest from './components/PostRquest';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
                 <Route exact path="/" element = {<CheckExistingProfile/>}/>
                 <Route exact path="/home" element={<Home/>}/>
                 <Route exact path="/profileSubmission" element={<ProfileSubmission/>}/>
+                <Route exact path="/postRequest" element={<PostRequest/>}/>
             </Routes>
         </div>
     </div>
