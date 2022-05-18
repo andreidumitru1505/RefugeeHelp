@@ -15,7 +15,6 @@ async function register(profileData) {
 
 const ProfileSubmission = () => {
 
-  const [identityGuid, setIdentityGuid] = useState();
   const [email, setEmail] = useState();
   const [name, setName] = useState();
   const [reigstrationNumber, setRegistrationNumber] = useState();
@@ -25,7 +24,6 @@ const ProfileSubmission = () => {
   const handleSubmit = async e => {
     e.preventDefault();
         const retBody = await register({
-          identityGuid,
           email,
           name,
           reigstrationNumber,

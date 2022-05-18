@@ -19,7 +19,6 @@ async function register(profileData) {
   
     const {user} = useAuth0();
 
-    const [identityGuid, setIdentityGuid] = useState();
     const email = user.email;
     const [name, setName] = useState();
     const [registrationNumber, setRegistrationNumber] = useState("PLACEHOLDER");
@@ -32,7 +31,6 @@ async function register(profileData) {
     const handleSubmit = async e => {
       e.preventDefault();
         await register({
-            identityGuid,
             email,
             name,
             registrationNumber,
@@ -61,9 +59,6 @@ async function register(profileData) {
                         </select>
                     </div>
                     <form class="row g-3" onSubmit={handleSubmit}>
-                        <div class="col-md-6">
-                        <input type="text" class="form-control" id="1" placeholder="Identity Guid"  onChange={e => setIdentityGuid(e.target.value)}/>
-                        </div>
                         <div class="col-md-6">
                         <input type="text" class="form-control" id="3" placeholder="Name" onChange={e => setName(e.target.value)}/>
                         </div>
