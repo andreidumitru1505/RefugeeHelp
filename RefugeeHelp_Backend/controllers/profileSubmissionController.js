@@ -14,11 +14,12 @@ exports.profileSubmission = async(req,res,next) => {
 
         if(req.body.role == "CENTER_ADMIN"){
             const [newCenter] = await conn.execute(
-                "INSERT INTO `centers` (`email`, `name`, `registrationNumber`, `address`) VALUES (?,?,?,?)",[
+                "INSERT INTO `centers` (`email`, `name`, `registrationNumber`, `address`, `phoneNumber`) VALUES (?,?,?,?,?)",[
                     req.body.email,
                     req.body.name,
                     req.body.registrationNumber,
-                    req.body.address
+                    req.body.address,
+                    req.body.phoneNumber
             ]);
 
             if(newCenter.affectedRows == 0){
@@ -34,9 +35,10 @@ exports.profileSubmission = async(req,res,next) => {
         }
         else if(req.body.role == "BASIC_USER"){
             const [newUser] = await conn.execute(
-                "INSERT INTO `users` (`email`, `name`) VALUES (?,?)",[
+                "INSERT INTO `users` (`email`, `name`,`phoneNumber`) VALUES (?,?,?)",[
                     req.body.email,
-                    req.body.name
+                    req.body.name,
+                    req.body.phoneNumber
             ]);
     
             if(newUser.affectedRows == 0){

@@ -19,7 +19,8 @@ router.post('/registerCenter',[
     body('email', "Please insert your email").notEmpty(),
     body('name', 'Please insert center name').notEmpty(),
     body('registrationNumber', "Please insert registration number").notEmpty(),
-    body('address', "Please insert address").notEmpty()
+    body('address', "Please insert address").notEmpty(),
+    body('phoneNumber', "Please insert phone number").notEmpty()
 ], registerCenter);
 
 router.post('/profileSubmission',[
@@ -27,8 +28,8 @@ router.post('/profileSubmission',[
     body('name', 'Please insert center name').notEmpty(),
     body('registrationNumber', "Please insert registration number").notEmpty(),
     body('address', "Please insert address").notEmpty(),
-    body('role', "Invalid Role").notEmpty()
-
+    body('role', "Invalid Role").notEmpty(),
+    body('phoneNumber', "Please insert phone number").notEmpty()
 ], profileSubmission);
 
 router.post('/existingProfileCheck',[
