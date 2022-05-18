@@ -37,7 +37,7 @@ async function register(profileData) {
             address,
             role
           });
-          navigate("/home");
+          navigate("/home", {state:{email:email, name:name, registrationNumber:registrationNumber, address:address, role:role}});
 
   }
 
