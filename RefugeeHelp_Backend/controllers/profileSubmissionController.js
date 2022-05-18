@@ -34,7 +34,7 @@ exports.profileSubmission = async(req,res,next) => {
         }
         else if(req.body.role == "BASIC_USER"){
             const [newUser] = await conn.execute(
-                "INSERT INTO `users` (`email`, `name`) VALUES (?,?,?)",[
+                "INSERT INTO `users` (`email`, `name`) VALUES (?,?)",[
                     req.body.email,
                     req.body.name
             ]);
