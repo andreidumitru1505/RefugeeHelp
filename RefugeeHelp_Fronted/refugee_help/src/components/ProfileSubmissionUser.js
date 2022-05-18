@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import ProfileSubmissionCenter from './ProfileSubmissionCenter';
 import Home from './Home';
 import { useNavigate } from 'react-router-dom';
+import { useAuth0 } from "@auth0/auth0-react";
 
 async function register(profileData) {
     return fetch('http://localhost:8080/profileSubmission', {
@@ -16,8 +17,10 @@ async function register(profileData) {
   
   const ProfileSubmissionUser = () => {
   
+    const {user} = useAuth0();
+
     const [identityGuid, setIdentityGuid] = useState();
-    const [email, setEmail] = useState();
+    const email = user.email;
     const [name, setName] = useState();
     const [registrationNumber, setRegistrationNumber] = useState("PLACEHOLDER");
     const [address, setAddress] = useState("PLACEHOLDER");
@@ -36,7 +39,7 @@ async function register(profileData) {
             address,
             role
           });
-          navigate('/');
+          navigate('/home');
   }
 
   if(changedRole == null){
@@ -60,9 +63,6 @@ async function register(profileData) {
                     <form class="row g-3" onSubmit={handleSubmit}>
                         <div class="col-md-6">
                         <input type="text" class="form-control" id="1" placeholder="Identity Guid"  onChange={e => setIdentityGuid(e.target.value)}/>
-                        </div>
-                        <div class="col-md-6">
-                        <input type="text" class="form-control" id="2"  placeholder="Email Address" onChange={e => setEmail(e.target.value)} />
                         </div>
                         <div class="col-md-6">
                         <input type="text" class="form-control" id="3" placeholder="Name" onChange={e => setName(e.target.value)}/>
