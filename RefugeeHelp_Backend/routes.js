@@ -9,8 +9,9 @@ const {existingProfileCheck} = require('./controllers/existingProfileCheckContro
 
 router.get('/getUsers', getUsers);
 router.post('/postRequest',[
-    body('centerId', 'Invalid'),
+    body('centerEmail', 'Invalid'),
     body('description', "Please add description").notEmpty(),
+    body('quantity', 'Please add quantity').notEmpty(),
     body('status', 'Invalid')
 ], postRequest);
 
