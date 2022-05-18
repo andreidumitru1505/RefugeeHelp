@@ -23,6 +23,7 @@ async function register(profileData) {
     const [name, setName] = useState();
     const [registrationNumber, setRegistrationNumber] = useState("PLACEHOLDER");
     const [address, setAddress] = useState("PLACEHOLDER");
+    const [phoneNumber, setPhoneNumber] = useState();
     const role="BASIC_USER";
     const [changedRole, setChangedRole] = useState(null);
     const navigate = useNavigate(); 
@@ -35,9 +36,10 @@ async function register(profileData) {
             name,
             registrationNumber,
             address,
+            phoneNumber,
             role
           });
-          navigate('/home', {state:{email:email, name: name, registrationNumber:'INVALID', address:'INVALID', role: role}});
+          navigate('/home', {state:{email:email, name: name, registrationNumber:'INVALID', address:'INVALID', role: role, phoneNumber:phoneNumber}});
   }
 
   if(changedRole == null){
@@ -61,6 +63,9 @@ async function register(profileData) {
                     <form class="row g-3" onSubmit={handleSubmit}>
                         <div class="col-md-6">
                         <input type="text" class="form-control" id="3" placeholder="Name" onChange={e => setName(e.target.value)}/>
+                        </div>
+                        <div class="col-md-6">
+                        <input type="text" class="form-control" id="3" placeholder="Phone Number" onChange={e => setPhoneNumber(e.target.value)}/>
                         </div>
                         <div class="col-12">
                         <button type="submit" class="btn btn-primary" style ={{backgroundColor:"#031d44", borderColor:"#031d44"}}>Submit Profile</button>
