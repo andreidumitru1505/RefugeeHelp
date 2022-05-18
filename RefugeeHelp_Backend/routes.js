@@ -5,6 +5,7 @@ const { getUsers } = require('./controllers/getUsersController');
 const {postRequest} = require('./controllers/requestsController');
 const {registerCenter} = require('./controllers/centersController');
 const {profileSubmission} = require('./controllers/profileSubmissionController');
+const {existingProfileCheck} = require('./controllers/existingProfileCheckController');
 
 router.get('/getUsers', getUsers);
 router.post('/postRequest',[
@@ -30,5 +31,9 @@ router.post('/profileSubmission',[
     body('role', "Invalid Role").notEmpty()
 
 ], profileSubmission);
+
+router.post('/existingProfileCheck',[
+    body('email', 'Invalid').notEmpty()
+], existingProfileCheck);
 
 module.exports = router;
