@@ -9,7 +9,6 @@ const Home = () => {
     const {state} = useLocation();
     const navigate = useNavigate();
 
-    console.log(state);
     if (isLoading) {
         return <div>Loading</div>;
     }

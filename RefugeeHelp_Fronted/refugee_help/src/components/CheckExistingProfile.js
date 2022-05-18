@@ -15,6 +15,7 @@ const CheckExistingProfile = () => {
         const checkExisting = async () => {
             const email = user.email;
             const dummy = 'dummy';
+
            const res = await fetch('http://localhost:8080/existingProfileCheck',{
                method: 'POST',
                headers: {
@@ -23,8 +24,7 @@ const CheckExistingProfile = () => {
                body: JSON.stringify({email, dummy})
            }).then(data => data.json())
 
-           setResponse(res.message);
-
+           setResponse(res);
         }
 
         if(isAuthenticated){
@@ -38,16 +38,26 @@ const CheckExistingProfile = () => {
 
     if (typeof response !== 'undefined'){
         if(!isAuthenticated){
-            navigate("/home");
+            navigate("/home", {state:{email:'INVALID', name:'INVALID', registrationNumber:'INVALID', address:'INVALID',
+                                    role: 'INVALID'}});
             return <Home/>;
         }
-        else if (isAuthenticated && response === 'EXISTING'){
-            navigate("/home");
-            return <Home/>;
-        }
-        else{
+        else if (isAuthenticated && response.hasOwnProperty('message')){
             navigate("/profileSubmission")
             return <ProfileSubmission/>;
+        }
+        else {
+            if(response[0].hasOwnProperty('registrationNumber')){
+                navigate("/home", {state:{email:response[0].email, name:response[0].name,
+                                        registrationNumber:response[0].registrationNumber, address:response[0].address,
+                                        role: 'CENTER_ADMIN'}});
+
+            }
+            else{
+                navigate("/home", {state:{email:response[0].email, name:response[0].name,
+                                        registrationNumber:'INVALID', address:'INVALID', role: 'BASIC_USER'}});
+            }
+            return <Home/>;
         }
     }
 };

@@ -39,7 +39,7 @@ async function register(profileData) {
             address,
             role
           });
-          navigate('/home', {state:{email:email, name: name, role: role}});
+          navigate('/home', {state:{email:email, name: name, registrationNumber:'INVALID', address:'INVALID', role: role}});
   }
 
   if(changedRole == null){
