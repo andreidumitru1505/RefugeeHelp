@@ -39,7 +39,7 @@ const CheckExistingProfile = () => {
     if (typeof response !== 'undefined'){
         if(!isAuthenticated){
             navigate("/home", {state:{email:'INVALID', name:'INVALID', registrationNumber:'INVALID', address:'INVALID',
-                                    role: 'INVALID'}});
+                                    role: 'INVALID', phoneNumber: 'INVALID'}});
             return <Home/>;
         }
         else if (isAuthenticated && response.hasOwnProperty('message')){
@@ -50,12 +50,12 @@ const CheckExistingProfile = () => {
             if(response[0].hasOwnProperty('registrationNumber')){
                 navigate("/home", {state:{email:response[0].email, name:response[0].name,
                                         registrationNumber:response[0].registrationNumber, address:response[0].address,
-                                        role: 'CENTER_ADMIN'}});
+                                        role: 'CENTER_ADMIN', phoneNumber:response[0].phoneNumber}});
 
             }
             else{
                 navigate("/home", {state:{email:response[0].email, name:response[0].name,
-                                        registrationNumber:'INVALID', address:'INVALID', role: 'BASIC_USER'}});
+                                        registrationNumber:'INVALID', address:'INVALID', role: 'BASIC_USER', phoneNumber:response[0].phoneNumber}});
             }
             return <Home/>;
         }

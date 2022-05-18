@@ -22,6 +22,7 @@ async function register(profileData) {
     const [name, setName] = useState();
     const [registrationNumber, setRegistrationNumber] = useState();
     const [address, setAddress] = useState();
+    const [phoneNumber, setPhoneNumber] = useState();
     const role="CENTER_ADMIN";
     const [changedRole, setChangedRole] = useState(null);
     const navigate = useNavigate();
@@ -33,9 +34,10 @@ async function register(profileData) {
             name,
             registrationNumber,
             address,
+            phoneNumber,
             role
           });
-          navigate("/home", {state:{email:email, name:name, registrationNumber:registrationNumber, address:address, role:role}});
+          navigate("/home", {state:{email:email, name:name, registrationNumber:registrationNumber, address:address, role:role, phoneNumber:phoneNumber}});
 
   }
 
@@ -66,6 +68,9 @@ async function register(profileData) {
                         </div>
                         <div class="col-md-6">
                         <input type="text" class="form-control" id="3" placeholder="Address" onChange={e => setAddress(e.target.value)}/>
+                        </div>
+                        <div class="col-md-6">
+                        <input type="text" class="form-control" id="3" placeholder="Phone Number" onChange={e => setPhoneNumber(e.target.value)}/>
                         </div>
                         <div class="col-12">
                         <button type="submit" class="btn btn-primary" style ={{backgroundColor:"#031d44", borderColor:"#031d44"}}>Submit Profile</button>

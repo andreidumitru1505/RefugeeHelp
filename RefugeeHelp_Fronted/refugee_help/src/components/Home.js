@@ -19,7 +19,7 @@ const Home = () => {
                     <LogoutButton/>
                     <button onClick={() => navigate("/postRequest",
                                                     {state:{email:state.email, name:state.name, registrationNumber:state.registrationNumber,
-                                                            address:state.address, role:state.role}})}>
+                                                            address:state.address, role:state.role, phoneNumber:state.phoneNumber}})}>
                             Add Request
                     </button>;
                 </div>)
