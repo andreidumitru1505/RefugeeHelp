@@ -66,3 +66,101 @@ exports.postRequest = async(req,res,next) => {
         next(err);
     }
 }
+
+exports.getDonationRequests = async(req, res, next) => {
+
+    try{
+ 
+        const [requests] = await conn.execute('SELECT * FROM `requests`');
+        var response = [];
+
+        for(var i = 0; i < requests.length; i++){
+            const [objects] = await conn.execute(
+                "SELECT * FROM objects WHERE (`isTransport` = 0 AND `requestId`=?)",[
+                    requests[i].requestId
+            ]);
+
+            if (objects.length === 0 || objects[0].isDonated === 1){
+                continue;
+            }
+
+            const [types] = await conn.execute(
+                "SELECT * FROM types WHERE `objectId`=?",[
+                    objects[0].objectId
+            ]);
+
+            if(types.length === 0){
+                continue;
+            }
+
+            const [centers] = await conn.execute(
+                "SELECT * FROM centers WHERE `centerId`=?",[
+                    requests[i].centerId
+            ]);
+
+            response.push( {
+                centerId: centers[0].centerId,
+                requestId: requests[i].requestId,
+                centerName: centers[0].name,
+                description: requests[i].description,
+                requestQuantity: types[0].requestQuantity,
+                receivedQuantity: types[0].receivedQuantity
+            });
+
+        }
+        res.contentType('application/json');
+        return res.send(JSON.stringify(response));  
+    }
+    catch(err){
+        next(err);
+    }
+}
+
+exports.getTransportRequests = async(req, res, next) => {
+
+    try{
+ 
+        const [requests] = await conn.execute('SELECT * FROM `requests`');
+        var response = [];
+
+        for(var i = 0; i < requests.length; i++){
+            const [objects] = await conn.execute(
+                "SELECT * FROM objects WHERE (`isTransport` = 1 AND `requestId`=?)",[
+                    requests[i].requestId
+            ]);
+
+            if (objects.length === 0 || objects[0].isDonated === 1){
+                continue;
+            }
+
+            const [types] = await conn.execute(
+                "SELECT * FROM types WHERE `objectId`=?",[
+                    objects[0].objectId
+            ]);
+
+            if(types.length === 0){
+                continue;
+            }
+
+            const [centers] = await conn.execute(
+                "SELECT * FROM centers WHERE `centerId`=?",[
+                    requests[i].centerId
+            ]);
+
+            response.push( {
+                centerId: centers[0].centerId,
+                requestId: requests[i].requestId,
+                centerName: centers[0].name,
+                description: requests[i].description,
+                requestQuantity: types[0].requestQuantity,
+                receivedQuantity: types[0].receivedQuantity
+            });
+
+        }
+        res.contentType('application/json');
+        return res.send(JSON.stringify(response));  
+    }
+    catch(err){
+        next(err);
+    }
+}
