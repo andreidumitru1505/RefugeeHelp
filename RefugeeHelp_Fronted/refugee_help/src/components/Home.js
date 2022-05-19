@@ -4,6 +4,7 @@ import LogoutButton from "./LogoutButton";
 import LoginButton from "./LoginButton";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from './Navbar';
+import img from '../home.png'
 
 const Home = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
@@ -23,6 +24,7 @@ const Home = () => {
             <div style={{maxWidth: "54px"}}>  </div>
         <div style ={{display: "flex", justifyContent:"center",alignItems: "center",marginTop:"50px"}}> 
         
+            <img className="img" src={img}  style ={{display: "block", display: "flex", justifyContent:"center", alignItems: "center", margin: " 0 auto", borderRadius: "20px"}} />
             </div>   
         
     </>

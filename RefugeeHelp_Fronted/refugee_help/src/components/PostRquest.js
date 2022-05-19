@@ -27,7 +27,8 @@ const PostRequest = () => {
             centerEmail,
             description,
             quantity,
-            status
+            status,
+            type
         });
 
     }
