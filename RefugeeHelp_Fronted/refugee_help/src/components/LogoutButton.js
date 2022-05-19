@@ -18,7 +18,7 @@ const LogoutButton = () => {
             alignContent: 'center'
     
         }}onClick={() => logout({ returnTo: window.location.origin})}>
-            Log Out
+            Logout
         </button>
     );
 };
