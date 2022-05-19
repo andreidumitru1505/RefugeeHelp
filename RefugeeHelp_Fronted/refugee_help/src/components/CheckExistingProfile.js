@@ -9,6 +9,7 @@ const CheckExistingProfile = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
     const [response, setResponse] = useState();
 
+    console.log("sda");
     const navigate = useNavigate();
     useEffect(() => {
         
@@ -16,6 +17,7 @@ const CheckExistingProfile = () => {
             const email = user.email;
             const dummy = 'dummy';
 
+            console.log('1');
            const res = await fetch('http://localhost:8080/existingProfileCheck',{
                method: 'POST',
                headers: {
@@ -23,7 +25,7 @@ const CheckExistingProfile = () => {
                },
                body: JSON.stringify({email, dummy})
            }).then(data => data.json())
-
+           console.log('2');
            setResponse(res);
         }
 
@@ -35,6 +37,12 @@ const CheckExistingProfile = () => {
  
     if(isLoading)
         return <div>Loading...</div>
+
+    if(!isLoading && !isAuthenticated){
+        navigate("/home", {state:{email:'INVALID', name:'INVALID', registrationNumber:'INVALID', address:'INVALID',
+                                    role: 'INVALID', phoneNumber: 'INVALID'}});
+        return <Home/>;
+    }
 
     if (typeof response !== 'undefined'){
         if(!isAuthenticated){
