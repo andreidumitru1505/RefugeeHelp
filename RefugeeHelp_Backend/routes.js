@@ -12,7 +12,8 @@ router.post('/postRequest',[
     body('centerEmail', 'Invalid'),
     body('description', "Please add description").notEmpty(),
     body('quantity', 'Please add quantity').notEmpty(),
-    body('status', 'Invalid')
+    body('status', 'Invalid'),
+    body('type', 'Please select type').notEmpty()
 ], postRequest);
 
 router.post('/registerCenter',[

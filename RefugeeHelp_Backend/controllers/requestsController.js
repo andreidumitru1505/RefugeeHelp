@@ -32,6 +32,25 @@ exports.postRequest = async(req,res,next) => {
                 req.body.status
         ]);
 
+        console.log(newRequest);
+
+        const [newObject] = await conn.execute(
+            "INSERT INTO `objects` (requestId, isTransport, isDonated) VALUES (?,?,?)",[
+                newRequest.insertId,
+                req.body.type === 'Transport',
+                false
+        ]);
+
+        const [newType] = await conn.execute(
+            "INSERT INTO `types`(objectId, type, description, requestQuantity, receivedQuantity) VALUES (?,?,?,?,?)", [
+                newObject.insertId,
+                req.body.type,
+                req.body.description,
+                req.body.quantity,
+                0
+            ]);
+
+        
         if(newRequest.affectedRows == 0){
             return res.status(422).json({
                 message: "Failed to post request."
