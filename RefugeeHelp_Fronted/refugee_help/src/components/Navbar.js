@@ -30,7 +30,8 @@ const Navbar = (props) => {
         }
         return (            <>
             <nav className="navbar" >
-                <div style={{display:'flex', flex:'1', alignItems:'flex-start'}}>    <h1 style = {{color: "#85BAA1", fontFamily: "fantasy"}}> logo </h1> </div>
+                <div style={{display:'flex', flex:'1', alignItems:'flex-start'}}>   
+                <img className="img" src={img} style ={{maxWidth:'8rem', marginTop:'0rem'}} /> </div>
                 <div style={{display:'flex', flexDirection:'row', alignItems:'flex-end'}}>
                     <HomeButton></HomeButton>
                     <LogoutButton></LogoutButton>

@@ -2,6 +2,7 @@ import './App.css';
 import LoginButton from './components/LoginButton';
 import LogoutButton from './components/LogoutButton';
 import Home from './components/Home';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useAuth0 } from '@auth0/auth0-react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import ProfileSubmission from './components/ProfileSubmission';
