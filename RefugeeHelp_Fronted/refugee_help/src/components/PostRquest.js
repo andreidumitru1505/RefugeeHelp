@@ -34,39 +34,49 @@ const PostRequest = () => {
     }
 
     return(
-        <div class = "container">
-        <div class="row">
-                <div className="card shadow mb-1 mx-auto text-center" style={{ width: '10rem', maxHeight: '40rem', marginTop: '5%', backgroundColor: '#57abd1', alignContent:'center' }}>
+        <div>
+        <div className="card shadow mb-4 mx-auto text-center" style ={{  width: '22rem', maxHeight: '40rem', marginTop: '5%', backgroundColor: '#BEEDAA',borderRadius:"10px"}}> 
+                
+        <div className="card-body">
+                {/* <div className="card shadow mb-1 mx-auto text-center" style={{ width: '10rem', maxHeight: '40rem', marginTop: '5%', backgroundColor: '#57abd1', alignContent:'center' }}>
                     <h5 class="card-title"> {'name'}  </h5>
                     <h6 class="card-subtitle mb-2 text-muted"> Transportator </h6>
-                </div>
-            <div class="row" style ={{ alignContent: 'center', marginTop: '5%'}}> 
-            
-                <div className="card mx-auto" style ={{backgroundColor: '#57abd1', padding: '15px', width: '35rem'}}>
-                <h5 class="card-title" style ={{marginBottom:'20px'}}> Inregistrare oferta </h5>
-                <div class="col-12">
-                        <select id="inputState" class="form-select" defaultValue={"Type"} onChange={e => {setType(e.target.value)}}>
+                </div> */}
+           <h4 class="card-title mb-0 border-bottom font-weight-bold" style ={{marginBottom:'20px'}}> Add request </h4> 
+           <p></p>
+           <div style={{marginInline:"2.5rem", borderRadius:"10px"}}>
+                
+                    <p></p>
+                   
+                        <select style ={{borderRadius:"10px",  marginTop:"3rem"}}  id="inputState" class="form-select" defaultValue={"Type"} onChange={e => {setType(e.target.value)}}>
                             <option>Water</option>
                             <option>Clothes</option>
                             <option>Hygiene</option>
-                            <option>Hygiene</option>
+                            <option>Food</option>
+                            <option>Transport</option>
+                            <option>Toys</option>
+                            <option>Books</option>
                         </select>
-                        </div>
-                    <form class="row g-3" onSubmit={handleSubmit}>
-                        <div class="col-md-6">
-                        <input type="text" class="form-control" id="1" placeholder="Description"  onChange={e => setDescription(e.target.value)}/>
-                        </div>
-                        <div class="col-md-6">
-                        <input type="text" class="form-control" id="3" placeholder="Quantity" onChange={e => setQuantity(e.target.value)}/>
-                        </div>
-                        <div class="col-12">
-                        <button type="submit" class="btn btn-primary" style ={{backgroundColor:"#031d44", borderColor:"#031d44"}}>Submit Profile</button>
-                        </div>
+                      
+                    <form  className='form-group' style={{ marginBottom:"8%"}} onSubmit={handleSubmit}>
+                        <p></p>
+                        <p></p>
+                        <input  style ={{borderRadius:"10px", marginTop:"2rem"}}  type="text" class="form-control" id="1" placeholder="Description"  onChange={e => setDescription(e.target.value)}/>
+                       
+                        <p></p>
+                      
+                        <input  style ={{borderRadius:"10px", marginTop:"2rem"}}  type="text" class="form-control" id="3" placeholder="Quantity" onChange={e => setQuantity(e.target.value)}/>
+                        
+                       
+                     
+                        <button type="submit" class="btn btn-primary" style ={{backgroundColor:"#94AE89", borderColor:"#94AE89", fontFamily:"Quicksand", fontWeight:"bold", borderRadius:"5px", padding:"4px"}}>Add</button>
+                        
                     </form>
                 </div>
                 </div>
             </div>
         </div>
+      
 
     )
 
