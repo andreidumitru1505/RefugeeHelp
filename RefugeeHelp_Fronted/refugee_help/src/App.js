@@ -8,6 +8,7 @@ import ProfileSubmission from './components/ProfileSubmission';
 import CheckExistingProfile from './components/CheckExistingProfile';
 import PostRequest from './components/PostRquest';
 import Navbar from './components/Navbar';
+import DonationRequests from './components/DonationRequests';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
                 <Route exact path="/home" element={<Home/>}/>
                 <Route exact path="/profileSubmission" element={<ProfileSubmission/>}/>
                 <Route exact path="/postRequest" element={<PostRequest/>}/>
+                <Route exact path="/donations" element={<DonationRequests/>}/>
             </Routes>
         </div>
     </div>
