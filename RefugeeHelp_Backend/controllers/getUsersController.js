@@ -48,6 +48,7 @@ exports.getUsersDonations = async (req,res,next) => {
             }
 
             response.push( {
+                donationId: donations[i].donationId,
                 description: donations[i].description,
                 quantity: donations[i].quantity,
                 centerName: centers[0].name
