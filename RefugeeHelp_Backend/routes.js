@@ -6,6 +6,7 @@ const {postRequest, getDonationRequests, getTransportRequests} = require('./cont
 const {registerCenter} = require('./controllers/centersController');
 const {profileSubmission} = require('./controllers/profileSubmissionController');
 const {existingProfileCheck} = require('./controllers/existingProfileCheckController');
+const {insertDonation} = require('./controllers/donationsController');
 
 router.get('/getUsers', getUsers);
 router.post('/postRequest',[
@@ -17,7 +18,16 @@ router.post('/postRequest',[
 ], postRequest);
 
 router.get('/getDonationRequests', getDonationRequests);
+
 router.get('/getTransportRequests', getTransportRequests)
+
+router.post('/insertDonation',[
+    body('requestId', "Please insert request Id").notEmpty(),
+    body('userEmail', "Please insert user email").notEmpty(),
+    body('centerId', "Please insert center id").notEmpty(),
+    body('description', "Please insert description").notEmpty(),
+    body('quantity', "Please insert quantity").notEmpty()
+], insertDonation);
 
 router.post('/registerCenter',[
     body('email', "Please insert your email").notEmpty(),
