@@ -20,17 +20,28 @@ const PostRequest = () => {
     const centerEmail = state.email;
     const [description, setDescription] = useState();
     const [quantity, setQuantity] = useState();
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
     const status = "NEW";
 
     const handleSubmit = async e => {
         e.preventDefault();
-        await post({
-            centerEmail,
-            description,
-            quantity,
-            status,
-            type
-        });
+
+        try {
+            setError('');
+            setSuccess('');
+            await post({
+                centerEmail,
+                description,
+                quantity,
+                status,
+                type
+            });
+            setSuccess("Request added successfully!");
+        } catch (e) {
+            setError(e.message);
+        }
+        
 
     }
 
@@ -79,6 +90,20 @@ const PostRequest = () => {
                 </div>
                 </div>
             </div>
+
+            {
+                error && 
+                <div>
+                    <p>{error}</p>
+                </div>
+            }
+
+            {
+                success && 
+                <div>
+                    <div class="border border-dark" style={{ alignItems:"center", padding:"10px", marginInline:"42%", fontFamily:"Quicksand", borderRadius:"10px", color:'black' }}>{success}</div>
+                </div>
+            }
         </div>
       
 
