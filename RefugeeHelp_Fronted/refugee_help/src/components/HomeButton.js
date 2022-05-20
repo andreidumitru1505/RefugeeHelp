@@ -1,7 +1,7 @@
 import React from "react";
 import { Navigate, useNavigate } from 'react-router-dom';
 
-const HomeButton = () => {
+const HomeButton = (props) => {
 
     const navigate = useNavigate();
 
@@ -19,7 +19,8 @@ const HomeButton = () => {
                 marginRight: '5px',
                 fontFamily: "Quicksand",
                 alignContent: 'center'       
-    }} onClick={() => (navigate("/home"))}> <a >Home</a></button>
+    }} onClick={() => (navigate("/home", {state:{email:props.email, name:props.name, registrationNumber:props.registrationNumber,
+                                        address:props.address, role:props.role, phoneNumber:props.phoneNumber}}))}> <a >Home</a></button>
     </div>
     </>
     )

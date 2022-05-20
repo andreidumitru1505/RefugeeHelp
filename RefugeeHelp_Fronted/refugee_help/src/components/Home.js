@@ -20,7 +20,7 @@ const Home = () => {
     <>
         <div>
             <Navbar email={state.email} name={state.name} registrationNumber={state.registrationNumber} role={state.role} address={state.address} phoneNumber={state.phoneNumber}/>
-            </div>
+        </div>
             <div style={{maxWidth: "54px"}}>  </div>
         <div style ={{display: "flex", justifyContent:"center",alignItems: "center",marginTop:"50px"}}> 
         

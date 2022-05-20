@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { useLocation } from 'react-router-dom';
+import Navbar from './Navbar';
 
 async function post(requestData) {
     return fetch('http://localhost:8080/postRequest',{
@@ -35,6 +36,9 @@ const PostRequest = () => {
 
     return(
         <div>
+            <div>
+                <Navbar email={state.email} name={state.name} registrationNumber={state.registrationNumber} role={state.role} address={state.address} phoneNumber={state.phoneNumber}/>
+            </div>
         <div className="card shadow mb-4 mx-auto text-center" style ={{  width: '22rem', maxHeight: '40rem', marginTop: '5%', backgroundColor: '#BEEDAA',borderRadius:"10px"}}> 
                 
         <div className="card-body">
