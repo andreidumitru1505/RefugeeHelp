@@ -40,16 +40,16 @@ const ProfileSubmission = () => {
         return (
                 <div>
                     <Navbar userInfo={null} />
-                  
-                            {/* <div className="card shadow mb-1 mx-auto text-center" style={{ width: '10rem', maxHeight: '40rem', marginTop: '5%', backgroundColor: '#57abd1', alignContent:'center' }}>
+                    <div class = "container">
+                    <div class="row">
+                            <div className="card shadow mb-1 mx-auto text-center" style={{ width: '10rem', maxHeight: '40rem', marginTop: '5%', backgroundColor: '#57abd1', alignContent:'center' }}>
                                 <h5 class="card-title"> {name}  </h5>
                                 <h6 class="card-subtitle mb-2 text-muted"> Transportator </h6>
-                            </div> */}
-                        <div className="card shadow mb-4 mx-auto text-center" style ={{  width: '22rem', maxHeight: '40rem', marginTop: '5%', backgroundColor: '#BEEDAA',borderRadius:"10px"}}>               
-                        <div className="card-body">
-                            <h4 className="card-title mb-0 border-bottom font-weight-bold" > Setup profile</h4>
-                        </div>
-                                {/* <form class="row g-3">
+                            </div>
+                        <div class="row" style ={{ alignContent: 'center', marginTop: '5%'}}>               
+                            <div className="card mx-auto" style ={{backgroundColor: '#57abd1', padding: '15px', width: '35rem'}}>
+                            <h5 class="card-title" style ={{marginBottom:'20px'}}> Profile Submission Form </h5>
+                                <form class="row g-3">
                                     <div class="col-12">
                                     <select id="inputState" class="form-select" onChange={e => setRole(e.target.value)}>
                                         <option selected>Profile Type</option>
@@ -57,22 +57,12 @@ const ProfileSubmission = () => {
                                         <option>Center Administrator</option>
                                     </select>
                                     </div>
-                                </form> */}
-                                
-                                    <div className='form-group'  style={{marginInline:"2.5rem", marginBottom:"8%"}}>
-                                        <label>Role</label>
-                                               
-            
-                                        <select class="form-select" style ={{borderRadius:"10px"}}onChange={e => setRole(e.target.value)}>
-                                        <option selected>Profile type</option>
-                                        <option value="User">User</option>
-                                        <option value="Center Administrator">Center Administrator</option>
-                                        </select>
-                                    </div>
+                                </form>
                             </div>
                             </div>
-                       
-               
+                        </div>
+                    </div>
+                </div>
         );
     }
     else if(role == "User") {

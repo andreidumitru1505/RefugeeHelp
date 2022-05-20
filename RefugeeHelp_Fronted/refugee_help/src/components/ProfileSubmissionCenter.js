@@ -47,42 +47,47 @@ async function register(profileData) {
     return (
         <div>
             <Navbar userInfo={state}/>
-            <div class = "container">
-            <div class="row">
-                    <div className="card shadow mb-1 mx-auto text-center" style={{ width: '10rem', maxHeight: '40rem', marginTop: '5%', backgroundColor: '#57abd1', alignContent:'center' }}>
+            {/* <div class = "container">
+            <div class="row"> */}
+                    {/* <div className="card shadow mb-1 mx-auto text-center" style={{ width: '10rem', maxHeight: '40rem', marginTop: '5%', backgroundColor: '#57abd1', alignContent:'center' }}>
                         <h5 class="card-title"> {name}  </h5>
                         <h6 class="card-subtitle mb-2 text-muted"> Transportator </h6>
-                    </div>
-                <div class="row" style ={{ alignContent: 'center', marginTop: '5%'}}> 
+                    </div> */}
+                <div className="card shadow mb-4 mx-auto text-center" style ={{  width: '22rem', maxHeight: '40rem', marginTop: '5%', backgroundColor: '#BEEDAA',borderRadius:"10px"}}> 
                 
-                    <div className="card mx-auto" style ={{backgroundColor: '#57abd1', padding: '15px', width: '35rem'}}>
-                    <h5 class="card-title" style ={{marginBottom:'20px'}}> Inregistrare oferta </h5>
-                    <div class="col-12">
-                            <select id="inputState" class="form-select" defaultValue={"Center Administrator"} onChange={() => {setChangedRole("changed")}}>
+                    <div className="card-body">
+                    <h4 class="card-title mb-0 border-bottom font-weight-bold" style ={{marginBottom:'20px'}}> Setup profile </h4>
+                    <div style={{marginInline:"2.5rem", borderRadius:"10px"}}>
+                    <p></p>
+                    <label>Role</label>
+                            <select  style ={{borderRadius:"10px"}}  id="inputState" class="form-select" defaultValue={"Center Administrator"} onChange={() => {setChangedRole("changed")}}>
                                 <option>User</option>
                                 <option>Center Administrator</option>
                             </select>
                             </div>
-                        <form class="row g-3" onSubmit={handleSubmit}>
-                            <div class="col-md-6">
-                            <input type="text" class="form-control" id="3" placeholder="Name" onChange={e => setName(e.target.value)}/>
-                            </div>
-                            <div class="col-md-6">
-                            <input type="text" class="form-control" id="3" placeholder="Registration Number" onChange={e => setRegistrationNumber(e.target.value)}/>
-                            </div>
-                            <div class="col-md-6">
-                            <input type="text" class="form-control" id="3" placeholder="Address" onChange={e => setAddress(e.target.value)}/>
-                            </div>
-                            <div class="col-md-6">
-                            <input type="text" class="form-control" id="3" placeholder="Phone Number" onChange={e => setPhoneNumber(e.target.value)}/>
-                            </div>
-                            <div class="col-12">
-                            <button type="submit" class="btn btn-primary" style ={{backgroundColor:"#031d44", borderColor:"#031d44"}}>Submit Profile</button>
-                            </div>
+                        <form className='form-group' style={{marginInline:"2.5rem", marginBottom:"8%"}} onSubmit={handleSubmit}>
+                            <p></p>
+                            <label>Name</label>
+                            <input style ={{borderRadius:"10px"}}  type="text" class="form-control" id="3" placeholder="Name" onChange={e => setName(e.target.value)}/>
+                          
+                            <p></p>
+                            <label>Registration Number</label>
+                            <input style ={{borderRadius:"10px"}}  type="text" class="form-control" id="3" placeholder="Registration Number" onChange={e => setRegistrationNumber(e.target.value)}/>
+                         
+                            <p></p>
+                            <label>Address</label>
+                            <input style ={{borderRadius:"10px"}}  type="text" class="form-control" id="3" placeholder="Address" onChange={e => setAddress(e.target.value)}/>
+                         
+                            <p></p>
+                            <label>Phone number</label>
+                            <input style ={{borderRadius:"10px"}}  type="text" class="form-control" id="3" placeholder="Phone Number" onChange={e => setPhoneNumber(e.target.value)}/>
+                          
+                            <button type="submit" class="btn btn-primary" style ={{backgroundColor:"#94AE89", borderColor:"#94AE89", fontFamily:"Quicksand", fontWeight:"bold", borderRadius:"5px", padding:"4px"}}>Submit</button>
+                           
                         </form>
                     </div>
-                    </div>
-                </div>
+                    {/* </div>
+                </div> */}
             </div>
         </div>
     )
