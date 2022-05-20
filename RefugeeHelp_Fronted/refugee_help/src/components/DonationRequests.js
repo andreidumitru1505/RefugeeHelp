@@ -1,10 +1,13 @@
 import {React, useEffect, useState} from 'react';
+import { useLocation } from 'react-router-dom';
 import {format} from 'react-string-format';
+import Navbar from './Navbar';
 
 
 const DonationRequests = () => {
     const [isLoading, setIsLoading] = useState(1);
     const [requests, setRequests] = useState();
+    const state = useLocation();
 
     useEffect(() => {
 
@@ -20,6 +23,9 @@ const DonationRequests = () => {
     else{
         return (
             <div>
+                <div>
+                    <Navbar email={state.email} name={state.name} registrationNumber={state.registrationNumber} role={state.role} address={state.address} phoneNumber={state.phoneNumber}/>
+                </div>
                 <div className="card mx-auto" style ={{backgroundColor: '#c4d6b0', padding: '15px', width: '35rem', marginTop: '3rem'}}>
                      <h5 class="card-title" style ={{marginBottom:'20px'}}> Donations </h5>
                      <div className = "accordion accordion-flush" id = "accordionFlushExample">
