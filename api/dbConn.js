@@ -2,7 +2,7 @@ const mysql = require('mysql2');
 
 const dbConn = mysql
   .createConnection({
-    host: "localhost",
+    host: "mariadb",
     user: "root",
     database: "RefugeeHelp",
     password: "1234",

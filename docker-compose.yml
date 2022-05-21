@@ -1,0 +1,133 @@
+version: '3.7'
+
+services:
+    frontend:
+        build:
+            context: ./frontend
+        container_name: 'frontend'
+        ports:
+            - "3000:3000"
+        stdin_open: true
+        # environment:
+        volumes:
+            - ./frontend:/usr/src/app/frontend
+            - /usr/src/app/frontend/node_modules
+        networks:
+            - application-network
+
+    api:
+        build:
+            context: ./api
+        container_name: 'api'
+        depends_on:
+            - mariadb
+        deploy:
+            restart_policy:
+                condition: on-failure
+        ports:
+            - "8080:8080"
+        #environment:
+        volumes:
+            - ./api:/usr/src/app/api
+            - /usr/src/app/api/node_modules
+        networks:
+            - application-network
+            - database-network
+            - logging
+            - rmq
+
+    mariadb:
+        image: mariadb:10.7
+        container_name: 'mariadb'
+        ports:
+            - "3307:3306"
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+            - MYSQL_ROOT_PASSWORD=1234
+            - MYSQL_PASSWORD=1234
+            - MYSQL_USER=root
+            - MYSQL_DATABASE=RefugeeHelp
+        volumes:
+            - ~/apps/mariadb:/var/lib/mysql
+        networks:
+            - database-network
+            - internal
+
+    # rabbitmq:   
+    #     image: rabbitmq:management-alpine
+    #     container_name: 'rabbitmq'
+    #     ports:
+    #         - "5672:5672"
+    #         - "15672:15672"
+    #     volumes:
+    #         - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+    #         - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    #     networks:
+    #         - rmq
+    #         - internal
+    #     hostname: rabbitmq
+
+    # kong:
+    #     image: kong:latest
+    #     container_name: 'kong'
+    #     deploy:
+    #         placement:
+    #             constraints: [node.role == manager]
+    #     ports:
+    #         - "8000:8000"
+    #         - "8443:8443"
+    #     volumes:
+    #         - ./kong:/usr/local/kong/declarative
+    #     environment:
+    #         KONG_DATABASE: 'off'
+    #         KONG_DECLARATIVE_CONFIG: /usr/local/kong/declarative/kong.yml
+    #         KONG_PROXY_ACCESS_LOG: /dev/stdout
+    #         KONG_ADMIN_ACCESS_LOG: /dev/stdout
+    #         KONG_PROXY_ERROR_LOG: /dev/stderr
+    #         KONG_ADMIN_ERROR_LOG: /dev/stderr
+    #         KONG_ADMIN_LISTEN: 0.0.0.0:8001, 0.0.0.0:8444 ssl
+    #     networks:
+    #         - internal
+
+    # loki:
+    #     image: grafana/loki
+    #     container_name: 'loki'
+    #     ports:
+    #         - "3100:3100"
+    #     volumes:
+    #         - ./loki/loki.yml:/etc/config/loki.yml
+    #         - ./loki/wal:/wal
+    #     entrypoint:
+    #         - /usr/bin/loki
+    #         - -config.file=/etc/config/loki.yml
+    #     networks:
+    #         - logging
+    #         - visualizing
+
+    # grafana:
+    #     image: grafana/grafana:latest
+    #     container_name: 'grafana'
+    #     depends_on:
+    #         - mariadb
+    #     environment:
+    #         # GF_SECURITY_ADMIN_USER: asistent
+    #         # GF_SECURITY_ADMIN_PASSWORD: grafanaSPRC2021
+    #     ports:
+    #         - "3000:3000"
+    #     volumes:
+    #         - grafana-storage:/var/lib/grafana
+    #         - ./grafana/dashboards:/etc/grafana/provisioning/dashboards
+    #         - ./grafana/:/etc/grafana/provisioning
+    #     networks:
+    #         - visualizing
+
+volumes:
+    grafana-storage:
+
+networks:
+    application-network:
+    database-network:
+    rmq:
+    internal:
+    logging:
+    visualizing:

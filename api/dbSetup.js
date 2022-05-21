@@ -3,7 +3,7 @@ const dbSetup = () => {
     var mysql = require('mysql2');
 
     var con = mysql.createConnection({
-    host: "localhost",
+    host: "mariadb",
     user: "root",
     password: "1234",
     port: 3306

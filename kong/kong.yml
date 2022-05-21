@@ -1,0 +1,30 @@
+_format_version: "2.1"
+
+services:
+  - name: refugee-help
+    url: http://refugee-help/api
+    routes:
+      - name: get-users
+        paths: 
+          - /getUsers
+      - name: register-center
+        paths: 
+          - /registerCenter
+      - name: profile-submission
+        paths: 
+          - /profileSubmission
+      - name: existing-profile-check
+        paths: 
+          - /existingProfileCheck
+
+consumers:
+  - username: student
+
+plugins:
+  - name: key-auth
+    service: refugee-help
+
+keyauth_credentials:
+  - consumer: student
+    key: mobylab
+    hide_credentials: true
