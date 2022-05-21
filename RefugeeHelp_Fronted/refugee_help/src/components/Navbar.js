@@ -34,6 +34,23 @@ const Navbar = (props) => {
                             fontFamily: "Quicksand",
                             alignContent: 'center'
 
+                            }} onClick={() => navigate("/centerAccount",
+                                        {state:{email:props.email, name:props.name, registrationNumber:props.registrationNumber,
+                                            address:props.address, role:props.role, phoneNumber:props.phoneNumber}})}>
+                                            My center
+                    </button>
+                    <button  style={{
+                            color: "white",
+                            backgroundColor: '#B24C63',
+                            borderRadius: '10px',
+                            borderWidth: '0px',
+                            padding:'7px',
+                            borderBottom: '1px',
+                            marginLeft: '10px',
+                            marginRight: '5px',
+                            fontFamily: "Quicksand",
+                            alignContent: 'center'
+
                             }} onClick={() => navigate("/postRequest",
                                         {state:{email:props.email, name:props.name, registrationNumber:props.registrationNumber,
                                             address:props.address, role:props.role, phoneNumber:props.phoneNumber}})}>
@@ -62,11 +79,11 @@ const Navbar = (props) => {
                             fontFamily: "Quicksand",
                             alignContent: 'center'
 
-                            }} onClick={() => navigate("/donations",
+                            }} onClick={() => navigate("/userAccount",
                                         {state:{email:props.email, name:props.name, registrationNumber:props.registrationNumber,
                                             address:props.address, role:props.role, phoneNumber:props.phoneNumber}})}>
-                                            Donate
-                    </button>
+                                            My account
+                    </button>                     
                     <button  style={{
                             color: "white",
                             backgroundColor: '#B24C63',
@@ -79,11 +96,11 @@ const Navbar = (props) => {
                             fontFamily: "Quicksand",
                             alignContent: 'center'
 
-                            }} onClick={() => navigate("/userAccount",
+                            }} onClick={() => navigate("/donations",
                                         {state:{email:props.email, name:props.name, registrationNumber:props.registrationNumber,
                                             address:props.address, role:props.role, phoneNumber:props.phoneNumber}})}>
-                                            My account
-                    </button>                    
+                                            Donate
+                    </button>                   
                     <LogoutButton></LogoutButton>
                 </div>
             </nav>

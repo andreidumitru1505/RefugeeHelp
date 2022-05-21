@@ -218,6 +218,7 @@ exports.getRequestsByCenter = async(req,res,next) => {
         }
 
         response.push({
+            requestId: requests[i].requestId,
             description: requests[i].description,
             requestQuantity: types[0].requestQuantity,
             receivedQuantity: types[0].receivedQuantity
@@ -309,6 +310,7 @@ exports.getCompletedRequestsByCenter = async(req,res,next) => {
         }
 
         response.push({
+            requestId: requests[i].requestId,
             description: requests[i].description,
             requestQuantity: types[0].requestQuantity,
             receivedQuantity: types[0].receivedQuantity,
