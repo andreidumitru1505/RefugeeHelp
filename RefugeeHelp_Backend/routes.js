@@ -2,7 +2,7 @@ const router = require('express').Router();
 const {body} = require('express-validator');
 
 const { getUsers, getUsersDonations } = require('./controllers/getUsersController');
-const {postRequest, getDonationRequests, getTransportRequests} = require('./controllers/requestsController');
+const {postRequest, getDonationRequests, getTransportRequests, getRequestsByCenter, getCompletedRequestsByCenter} = require('./controllers/requestsController');
 const {registerCenter} = require('./controllers/centersController');
 const {profileSubmission} = require('./controllers/profileSubmissionController');
 const {existingProfileCheck} = require('./controllers/existingProfileCheckController');
@@ -23,7 +23,15 @@ router.post('/postRequest',[
 
 router.get('/getDonationRequests', getDonationRequests);
 
-router.get('/getTransportRequests', getTransportRequests)
+router.get('/getTransportRequests', getTransportRequests);
+
+router.post('/getRequestsByCenter',[
+    body('email', "Please insert email").notEmpty()
+], getRequestsByCenter);
+
+router.post('/getCompletedRequestsByCenter',[
+    body('email', "Please insert email").notEmpty()
+], getCompletedRequestsByCenter)
 
 router.post('/insertDonation',[
     body('requestId', "Please insert request Id").notEmpty(),

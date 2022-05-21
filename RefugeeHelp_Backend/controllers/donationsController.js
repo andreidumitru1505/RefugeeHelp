@@ -60,7 +60,7 @@ exports.insertDonation = async(req, res, next) => {
             })
         }
 
-        if(types[0].requestQuantity - types[0].receivedQuantity < req.body.quantity){
+        if(types[0].requestQuantity - types[0].receivedQuantity <= req.body.quantity){
             const [objectDonatedUpdate] = await conn.execute(
                 "UPDATE `objects` SET `isDonated` = true WHERE `objectId`=?",[
                     objects[0].objectId

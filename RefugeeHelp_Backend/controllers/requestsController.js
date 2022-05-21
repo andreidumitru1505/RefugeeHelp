@@ -164,3 +164,158 @@ exports.getTransportRequests = async(req, res, next) => {
         next(err);
     }
 }
+
+exports.getRequestsByCenter = async(req,res,next) => {
+    const errors = validationResult(req);
+    console.log(req.body);
+
+    if(!errors.isEmpty()){
+        
+        return res.status(422).json({ errors: errors.array() });
+    }
+
+    const [centers] = await conn.execute(
+        "SELECT * FROM centers WHERE `email`=?",[
+            req.body.email
+        ])
+    
+    if(centers.length === 0){
+        return res.status(422).json({
+            message: "Failed retrieving requests."
+        })
+    }
+
+    const [requests] = await conn.execute(
+        "SELECT * FROM requests WHERE `centerId`=?",[
+            centers[0].centerId
+    ]);
+
+    var response = []
+    if(requests.length === 0){
+        res.contentType('application/json');
+        return res.send(JSON.stringify(response));
+    }
+
+    for(var i = 0; i < requests.length; i++){
+        const [objects] = await conn.execute(
+            "SELECT * FROM objects WHERE `requestId`=? AND `isDonated`=false",[
+                requests[i].requestId
+        ])
+
+        if(objects.length === 0){
+            continue;
+        }
+
+        const [types] = await conn.execute(
+            "SELECT * FROM types WHERE `objectId`=?",[
+                objects[0].objectId
+        ])
+
+        if(types.length === 0){
+            return res.status(422).json({
+                message: "Failed retrieving requests."
+            })
+        }
+
+        response.push({
+            description: requests[i].description,
+            requestQuantity: types[0].requestQuantity,
+            receivedQuantity: types[0].receivedQuantity
+        })
+    }
+
+    res.contentType('application/json');
+    return res.send(JSON.stringify(response));
+
+}
+
+exports.getCompletedRequestsByCenter = async(req,res,next) => {
+    const errors = validationResult(req);
+    console.log(req.body);
+
+    if(!errors.isEmpty()){
+        
+        return res.status(422).json({ errors: errors.array() });
+    }
+
+    const [centers] = await conn.execute(
+        "SELECT * FROM centers WHERE `email`=?",[
+            req.body.email
+    ])
+    
+    if(centers.length === 0){
+        return res.status(422).json({
+            message: "Failed retrieving requests."
+        })
+    }
+
+    const [requests] = await conn.execute(
+        "SELECT * FROM requests WHERE `centerId`=?",[
+            centers[0].centerId
+    ]);
+
+    var response = [];
+    if(requests.length === 0){
+        res.contentType('application/json');
+        return res.send(JSON.stringify(response));
+    }
+
+    for (var i = 0; i < requests.length; i++){
+        const [objects] = await conn.execute(
+            "SELECT * FROM objects WHERE `requestId`=? AND `isDonated`=true",[
+                requests[i].requestId
+        ])
+
+        if(objects.length === 0){
+            continue;
+        }
+
+        var donationUsers = [];
+
+        const [donations] = await conn.execute(
+            "SELECT * FROM donations WHERE `objectId`=?",[
+                objects[0].objectId
+            ]
+        )
+
+        if(donations.length === 0){
+            return res.status(422).json({
+                message: "Failed retrieving requests."
+            })
+        }
+
+        for(var j = 0; j < donations.length; j++){
+            const [users] = await conn.execute(
+                "SELECT * FROM users WHERE `userId`=?",[
+                    donations[j].userId
+            ])
+            if(users.length === 0){
+                return res.status(422).json({
+                    message: "Failed retrieving requests."
+                })
+            }
+            donationUsers.push(users[0].name);       
+        }
+
+        const [types] = await conn.execute(
+            "SELECT * FROM types WHERE `objectId`=?",[
+                objects[0].objectId
+        ])
+
+        if(types.length === 0){
+            return res.status(422).json({
+                message: "Failed retrieving requests."
+            })
+        }
+
+        response.push({
+            description: requests[i].description,
+            requestQuantity: types[0].requestQuantity,
+            receivedQuantity: types[0].receivedQuantity,
+            users: donationUsers
+        })
+    }
+
+    res.contentType('application/json');
+    return res.send(JSON.stringify(response));
+}
